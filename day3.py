@@ -27,13 +27,43 @@ def part_one(input):
         visited.append(curr)
         # print(f"curr: {curr}")
         
-
     return len(set(visited))
 
 
 def part_two(input):
     
-    pass
+    santa = [(0,0)]
+    robot = [(0,0)]
+
+    # santas moves
+    for move in input[0][::2]:
+        prev = santa[-1]
+        if move == "^":    
+            curr = (prev[0], prev[1] + 1)
+        elif move == "v":
+            curr = (prev[0], prev[1] - 1)
+        elif move == ">":
+            curr = (prev[0] + 1, prev[1])
+        elif move == "<":
+            curr = (prev[0] - 1, prev[1])
+        santa.append(curr)
+
+    # robots moves
+    for move in input[0][1::2]:
+        prev = robot[-1]
+        if move == "^":    
+            curr = (prev[0], prev[1] + 1)
+        elif move == "v":
+            curr = (prev[0], prev[1] - 1)
+        elif move == ">":
+            curr = (prev[0] + 1, prev[1])
+        elif move == "<":
+            curr = (prev[0] - 1, prev[1])
+        robot.append(curr)
+
+    # combined
+    combined = set(santa + robot)
+    return len(combined)
 
 
 def main():
@@ -42,8 +72,8 @@ def main():
     # print(data)
     # sample = ["^v^v^v^v^v"]
     
-    print(part_one(data))
-    # print(part_two(data))
+    # print(part_one(data))
+    print(part_two(data))
 
 
 if __name__ == "__main__":
