@@ -10,7 +10,23 @@ def parse_input(input):
 
 def part_one(input):
 
-    pass
+    visited = [[0,0]]
+
+    for move in input[0]:
+        prev = visited[-1]
+        if move == "^":    
+            curr = [prev[0], prev[1] + 1]
+        elif move == "v":
+            curr = [prev[0], prev[1] - 1]
+        elif move == ">":
+            curr = [prev[0] + 1, prev[1]]
+        elif move == "<":
+            curr = [prev[0] - 1, prev[1]]
+        
+        if curr not in visited:
+            visited.append(curr)
+
+    return len(visited)
 
 
 def part_two(input):
