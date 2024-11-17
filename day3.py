@@ -10,23 +10,25 @@ def parse_input(input):
 
 def part_one(input):
 
-    visited = [[0,0]]
+    visited = [(0,0)]
 
     for move in input[0]:
         prev = visited[-1]
+        # print(F"prev: {prev}")
+        # print(f"move: {move}")
         if move == "^":    
-            curr = [prev[0], prev[1] + 1]
+            curr = (prev[0], prev[1] + 1)
         elif move == "v":
-            curr = [prev[0], prev[1] - 1]
+            curr = (prev[0], prev[1] - 1)
         elif move == ">":
-            curr = [prev[0] + 1, prev[1]]
+            curr = (prev[0] + 1, prev[1])
         elif move == "<":
-            curr = [prev[0] - 1, prev[1]]
+            curr = (prev[0] - 1, prev[1])
+        visited.append(curr)
+        # print(f"curr: {curr}")
         
-        if curr not in visited:
-            visited.append(curr)
 
-    return len(visited)
+    return len(set(visited))
 
 
 def part_two(input):
@@ -37,10 +39,11 @@ def part_two(input):
 def main():
     f = "inputs//day3.txt"
     data = parse_input(f)
-    # print(data[:10])
-
+    # print(data)
+    # sample = ["^v^v^v^v^v"]
+    
     print(part_one(data))
-    print(part_two(data))
+    # print(part_two(data))
 
 
 if __name__ == "__main__":
