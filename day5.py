@@ -56,10 +56,13 @@ def part_two(input):
                 return True 
         return False
     
+    def is_nice(s):
+        return two_pairs(s) and valid_trios(s)
+
     nice_strings = 0 
 
     for strng in input:
-        if two_pairs(strng) and valid_trios(strng):
+        if is_nice(strng):
             nice_strings += 1
 
     return nice_strings
