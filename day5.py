@@ -42,28 +42,34 @@ def part_one(input):
 
 def part_two(input):
     
+    from collections import Counter
+
     nice_strings = []
 
     for strng in input:
-        print(strng)
+        # print(strng)
         n = len(strng)
         if n < 3:
             continue
 
-        pairs = []
+        pairs = [strng[0]+strng[1]]
 
-        i, j = 0, 1
+        i, j = 1, 2
         while j < n:
             # rule 1
-            if strng[i] == strng[j]:
-                if strng[i:j+1] != pairs[-1]:
-                    print("valid pair", strng[i], strng[j], strng[i:j+1])
-                    pairs.append(strng[i:j+1])
-                    i += 2
-                    j += 2
-            else:
+            if strng[i]+strng[j] != pairs[-1]:
+                pairs.append(strng[i]+strng[j])
                 i += 1
                 j += 1
+            else:
+                i += 2
+                j += 2
+        
+        pairs_count = 0
+        cnter = Counter(pairs)
+        for k, v in cnter.items():
+            if v >= 2:
+                pairs_count += 1
         
         trio = 0
 
@@ -71,16 +77,16 @@ def part_two(input):
         while r < n:
             # rule 2 
             if strng[p] == strng[r]:
-                print("valid trio", strng[p], strng[q], strng[r])
+                # print("valid trio", strng[p], strng[q], strng[r])
                 trio += 1
             p += 1
             q += 1
             r += 1
 
-        if pairs >= 2 and trio >= 1:
+        if pairs_count >= 1 and trio >= 1:
             nice_strings.append(strng)
         
-        print('')
+        # print('')
     
     return len(nice_strings)
 
@@ -91,7 +97,7 @@ def main():
     # print(data)
 
     # sample1 = ['qjhvhtzxzqqjkmpb', 'jchzalrnumimnmhp', 'haegwjzuvuyypxyu', 'dvszwmarrgswjxmb']
-    sample2 = ['uurcxstgmygtbstg', 'qjhvhtzxzqqjkmpb', 'xxyxx', 'ieodomkazucvgmuy']
+    sample2 = ['uurcxstgmygtbstg', 'qjhvhtzxzqqjkmpb', 'xxyxx', 'ieodomkazucvgmuy', 'aaa']
 
     # print(part_one(data))
     print(part_two(sample2))
