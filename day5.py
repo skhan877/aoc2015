@@ -56,10 +56,11 @@ def part_two(input):
         while j < n:
             # rule 1
             if strng[i] == strng[j]:
-                print("valid pair", strng[i], strng[j])
-                pairs += 1
-                i += 2
-                j += 2
+                if strng[i:j+1] != pairs[-1]:
+                    print("valid pair", strng[i], strng[j], strng[i:j+1])
+                    pairs.append(strng[i:j+1])
+                    i += 2
+                    j += 2
             else:
                 i += 1
                 j += 1
