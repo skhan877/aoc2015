@@ -42,7 +42,46 @@ def part_one(input):
 
 def part_two(input):
     
-    pass
+    nice_strings = []
+
+    for strng in input:
+        print(strng)
+        n = len(strng)
+        if n < 3:
+            continue
+
+        pairs = []
+
+        i, j = 0, 1
+        while j < n:
+            # rule 1
+            if strng[i] == strng[j]:
+                print("valid pair", strng[i], strng[j])
+                pairs += 1
+                i += 2
+                j += 2
+            else:
+                i += 1
+                j += 1
+        
+        trio = 0
+
+        p, q, r = 0, 1, 2
+        while r < n:
+            # rule 2 
+            if strng[p] == strng[r]:
+                print("valid trio", strng[p], strng[q], strng[r])
+                trio += 1
+            p += 1
+            q += 1
+            r += 1
+
+        if pairs >= 2 and trio >= 1:
+            nice_strings.append(strng)
+        
+        print('')
+    
+    return len(nice_strings)
 
 
 def main():
@@ -50,10 +89,11 @@ def main():
     data = parse_input(f)
     # print(data)
 
-    # sample = ['ugknbfddgicrmopn', 'jchzalrnumimnmhp', 'haegwjzuvuyypxyu', 'dvszwmarrgswjxmb']
+    # sample1 = ['qjhvhtzxzqqjkmpb', 'jchzalrnumimnmhp', 'haegwjzuvuyypxyu', 'dvszwmarrgswjxmb']
+    sample2 = ['uurcxstgmygtbstg', 'qjhvhtzxzqqjkmpb', 'xxyxx', 'ieodomkazucvgmuy']
 
-    print(part_one(data))
-    # print(part_two(data))
+    # print(part_one(data))
+    print(part_two(sample2))
 
 
 if __name__ == "__main__":
