@@ -26,8 +26,22 @@ def part_one(input):
 
         return (action, from_xy.split(','), to_xy.split(','))
     
+    lit = 0
+    on = []
+    off = []
+
     for s in input:
-        print(extract_action(s))
+        print(s)
+        action, from_xy, to_xy = extract_action(s)
+        if action == "on":
+            print(from_xy, to_xy)
+            on.append([x for x in range(int(from_xy[0]), int(to_xy[0]))])
+        print("")
+
+
+    
+    return on
+
 
 
 def part_two(input):
@@ -38,7 +52,7 @@ def part_two(input):
 def main():
     f = "inputs//day6.txt"
     data = parse_input(f)
-    data = data[-20:]
+    data = data[:10]
     # print(data)
 
     # sample = []
