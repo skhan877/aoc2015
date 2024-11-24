@@ -77,6 +77,10 @@ def main():
     # print(part_one(data))
     # print(part_two(data))
 
+    '''
+    TODO: create matrix and update elements to 1 or 0 then sum elements
+    '''
+
 
 if __name__ == "__main__":
     main()
