@@ -26,7 +26,7 @@ def part_one(input):
 
         return (action, from_xy.split(','), to_xy.split(','))
     
-    lit = 0
+    # lit = 0
     on = []
     off = []
 
@@ -35,7 +35,7 @@ def part_one(input):
         action, from_xy, to_xy = extract_action(s)
         if action == "on":
             print(from_xy, to_xy)
-            on.append([x for x in range(int(from_xy[0]), int(to_xy[0]))])
+            on.append([(x, y) for x in range(int(from_xy[0]), int(to_xy[0]) + 1) for y in range(int(from_xy[1]), int(to_xy[1]) + 1)])
         print("")
 
 
@@ -55,9 +55,9 @@ def main():
     data = data[:10]
     # print(data)
 
-    # sample = []
+    sample = ['turn on 0,0 through 2,2']
 
-    print(part_one(data))
+    print(part_one(sample))
     # print(part_two(data))
 
 
