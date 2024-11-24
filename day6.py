@@ -33,14 +33,18 @@ def part_one(input):
     for s in input:
         print(s)
         action, from_xy, to_xy = extract_action(s)
+        coords = [(x, y) for x in range(int(from_xy[0]), int(to_xy[0]) + 1) for y in range(int(from_xy[1]), int(to_xy[1]) + 1)]
         if action == "on":
-            print(from_xy, to_xy)
-            on.append([(x, y) for x in range(int(from_xy[0]), int(to_xy[0]) + 1) for y in range(int(from_xy[1]), int(to_xy[1]) + 1)])
+            print("on", coords)
+            on += [c for c in coords if c not in on]
+        elif action == "off":
+            print("off", coords)
+            on = [c for c in on if c not in coords]
         print("")
 
 
     
-    return on
+    return len(on), on
 
 
 
@@ -55,7 +59,7 @@ def main():
     data = data[:10]
     # print(data)
 
-    sample = ['turn on 0,0 through 2,2']
+    sample = ['turn on 0,0 through 2,2', 'turn off 1,0 through 2,2', 'turn on 2,2 through 3,3', 'turn off 0,0 through 0,1']
 
     print(part_one(sample))
     # print(part_two(data))
