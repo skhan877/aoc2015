@@ -26,24 +26,25 @@ def part_one(input):
 
         return (action, from_xy.split(','), to_xy.split(','))
     
-    # lit = 0
     on = []
-    off = []
-    board = [[[0] * 4] * 4]
+    board = [[0]*4 for rows in range(4)]
 
     for s in input:
         print(s)
         action, from_xy, to_xy = extract_action(s)
         coords = [[x, y] for x in range(int(from_xy[0]), int(to_xy[0]) + 1) for y in range(int(from_xy[1]), int(to_xy[1]) + 1)]
+
         if action == "on":
             print("on", coords)
-            # on += [c for c in coords if c not in on]
             for c in coords:
+                print(c)
                 board[c[0]][c[1]] = 1
                 print(board)
+                print("")
+        
         elif action == "off":
             print("off", coords)
-            # on = [c for c in on if c not in coords]
+        
         elif action == "toggle":
             print("toggle", coords)
     #         for c in coords:
@@ -52,10 +53,7 @@ def part_one(input):
     #             elif c not in on:
     #                 on += [c]
         
-    #     # print("currently on: ", on)
         print("")
-
-    # return len(on)
 
     # print(board)
 
@@ -73,10 +71,10 @@ def main():
 
     sample = ['toggle 1,2 through 2,2'
               ,'turn on 0,0 through 2,2'
-              , 'turn off 1,0 through 2,2'
-              , 'turn on 2,2 through 3,3'
-            #   , 'turn off 0,0 through 0,1'
-              , 'toggle 0,0 through 1,1'
+            #   , 'turn off 1,0 through 2,2'
+            #   , 'turn on 2,2 through 3,3'
+            # #   , 'turn off 0,0 through 0,1'
+            #   , 'toggle 0,0 through 1,1'
               ]
 
     print(part_one(sample))
