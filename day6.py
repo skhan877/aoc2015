@@ -29,20 +29,23 @@ def part_one(input):
     # lit = 0
     on = []
     off = []
-    board = [[0] * 4] * 4
+    board = [[[0] * 4] * 4]
 
-    # for s in input:
-    #     # print(s)
-    #     action, from_xy, to_xy = extract_action(s)
-    #     coords = [(x, y) for x in range(int(from_xy[0]), int(to_xy[0]) + 1) for y in range(int(from_xy[1]), int(to_xy[1]) + 1)]
-    #     if action == "on":
-    #         # print("on", coords)
-    #         on += [c for c in coords if c not in on]
-    #     elif action == "off":
-    #         # print("off", coords)
-    #         on = [c for c in on if c not in coords]
-    #     elif action == "toggle":
-    #         # print("toggle", coords)
+    for s in input:
+        print(s)
+        action, from_xy, to_xy = extract_action(s)
+        coords = [[x, y] for x in range(int(from_xy[0]), int(to_xy[0]) + 1) for y in range(int(from_xy[1]), int(to_xy[1]) + 1)]
+        if action == "on":
+            print("on", coords)
+            # on += [c for c in coords if c not in on]
+            for c in coords:
+                board[c[0]][c[1]] = 1
+                print(board)
+        elif action == "off":
+            print("off", coords)
+            # on = [c for c in on if c not in coords]
+        elif action == "toggle":
+            print("toggle", coords)
     #         for c in coords:
     #             if c in on:
     #                 on.remove(c)
@@ -50,11 +53,11 @@ def part_one(input):
     #                 on += [c]
         
     #     # print("currently on: ", on)
-    #     # print("")
+        print("")
 
     # return len(on)
 
-    print(board)
+    # print(board)
 
 
 def part_two(input):
