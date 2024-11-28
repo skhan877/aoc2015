@@ -37,25 +37,24 @@ def part_one(input):
         if action == "on":
             print("on", coords)
             for c in coords:
-                print(c)
+                # print(c)
                 board[c[0]][c[1]] = 1
-                print(board)
-                print("")
+                # print(board)
+                # print("")
         
         elif action == "off":
             print("off", coords)
+            for c in coords:
+                board[c[0]][c[1]] = 0
         
         elif action == "toggle":
             print("toggle", coords)
-    #         for c in coords:
-    #             if c in on:
-    #                 on.remove(c)
-    #             elif c not in on:
-    #                 on += [c]
-        
+            for c in coords:
+                board[c[0]][c[1]] = (board[c[0]][c[1]] - 1) % 2
+        print(board)
         print("")
 
-    # print(board)
+    print(board)
 
 
 def part_two(input):
@@ -71,10 +70,10 @@ def main():
 
     sample = ['toggle 1,2 through 2,2'
               ,'turn on 0,0 through 2,2'
-            #   , 'turn off 1,0 through 2,2'
-            #   , 'turn on 2,2 through 3,3'
-            # #   , 'turn off 0,0 through 0,1'
-            #   , 'toggle 0,0 through 1,1'
+              , 'turn off 1,0 through 2,2'
+              , 'turn on 2,2 through 3,3'
+            #   , 'turn off 0,0 through 0,1'
+              , 'toggle 0,0 through 1,1'
               ]
 
     print(part_one(sample))
