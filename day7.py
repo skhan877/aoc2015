@@ -14,18 +14,24 @@ def part_one(input):
 
     for instr in input: 
         print(instr)
+        # separate input and output
         instr = instr.split(" -> ")
         outp = instr[1]
+
         print(instr)
+        # split inputs
         inp = instr[0].split(" ")
+        
+        # if inputs have multiple parts, convert them to what is already known
         if len(inp) > 1:
             inp = [x.replace(x, signals[x]) if x in signals.keys() else x for x in inp]
         print({outp: inp[0] if len(inp) == 1 else inp})
+
+        # add mappings to signals dict
         signals[outp] = inp[0] if len(inp) == 1 else inp
         print("")
 
     # print(123 & 456)
-    # print(6 >> 1)
 
     return signals 
 
