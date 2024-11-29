@@ -18,8 +18,10 @@ def part_one(input):
         outp = instr[1]
         print(instr)
         inp = instr[0].split(" ")
-        print({outp: inp})
-        signals[outp] = inp
+        if len(inp) > 1:
+            inp = [x.replace(x, signals[x]) if x in signals.keys() else x for x in inp]
+        print({outp: inp[0] if len(inp) == 1 else inp})
+        signals[outp] = inp[0] if len(inp) == 1 else inp
         print("")
 
     # print(123 & 456)
