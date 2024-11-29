@@ -15,11 +15,14 @@ def part_one(input):
     for instr in input: 
         print(instr)
         instr = instr.split(" -> ")
+        outp = instr[1]
         print(instr)
-        print(instr[0].split(" "))
+        inp = instr[0].split(" ")
+        print({outp: inp})
+        signals[outp] = inp
         print("")
 
-    print(123 & 456)
+    # print(123 & 456)
     # print(6 >> 1)
 
     return signals 
