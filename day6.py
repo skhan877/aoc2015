@@ -30,38 +30,27 @@ def part_one(input, size=1000):
         tot = 0 
         for row in M:
             for item in row:
-                # print(row, col)
                 tot += item
         return tot 
     
     board = [[0] * size for rows in range(size)]
 
     for s in input:
-        # print(s)
         action, from_xy, to_xy = extract_action(s)
         coords = [[x, y] for x in range(int(from_xy[0]), int(to_xy[0]) + 1) for y in range(int(from_xy[1]), int(to_xy[1]) + 1)]
 
         if action == "on":
-            # print("on", coords)
             for c in coords:
-                # print(c)
                 board[c[0]][c[1]] = 1
-                # print(board)
-                # print("")
         
         elif action == "off":
-            # print("off", coords)
             for c in coords:
                 board[c[0]][c[1]] = 0
         
         elif action == "toggle":
-            # print("toggle", coords)
             for c in coords:
                 board[c[0]][c[1]] = (board[c[0]][c[1]] - 1) % 2
-        # print(board)
-        # print("")
 
-    # print(board)
     return matrix_sum(board)
 
 
@@ -87,7 +76,6 @@ def part_two(input, size=1000):
         tot = 0 
         for row in M:
             for item in row:
-                # print(row, col)
                 tot += item
         return tot 
     
@@ -99,27 +87,18 @@ def part_two(input, size=1000):
         coords = [[x, y] for x in range(int(from_xy[0]), int(to_xy[0]) + 1) for y in range(int(from_xy[1]), int(to_xy[1]) + 1)]
 
         if action == "on":
-            # print("on", coords)
             for c in coords:
-                # print(c)
                 board[c[0]][c[1]] += 1
-                # print(board)
-                # print("")
         
         elif action == "off":
-            # print("off", coords)
             for c in coords:
                 if board[c[0]][c[1]] > 0:
                     board[c[0]][c[1]] -= 1
         
         elif action == "toggle":
-            # print("toggle", coords)
             for c in coords:
                 board[c[0]][c[1]] += 2
-        # print(board)
-        # print("")
 
-    # print(board)
     return matrix_sum(board)
 
     
@@ -141,9 +120,6 @@ def main():
     # print(part_one(data, size=1000))
     print(part_two(data, size=1000))
 
-    '''
-    TODO: create matrix and update elements to 1 or 0 then sum elements
-    '''
 
 
 if __name__ == "__main__":
