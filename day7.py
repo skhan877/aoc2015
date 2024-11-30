@@ -18,22 +18,18 @@ def part_one(input):
         instr = instr.split(" -> ")
         outp = instr[1]
 
-        print(instr)
         # split inputs
         inp = instr[0].split(" ")
+        inp = [x.replace(x, str(signals[x])) if x in signals.keys() else x for x in inp]
         
-        # if inputs have multiple parts, convert them to what is already known
-        if len(inp) > 1:
-            inp = [x.replace(x, signals[x]) if x in signals.keys() else x for x in inp]
-        print({outp: inp[0] if len(inp) == 1 else inp})
 
         # add mappings to signals dict
         signals[outp] = inp[0] if len(inp) == 1 else inp
+        print({outp: inp[0] if len(inp) == 1 else inp})
+
         print("")
 
-    # print(123 & 456)
-
-    return signals 
+    return signals
 
 
 def part_two(input, size=1000):
@@ -41,23 +37,11 @@ def part_two(input, size=1000):
     pass 
 
 
-# def convert_syntax(word): 
-
-#     operators = {"AND": &,
-#         "OR": |,
-#         "XOR": ^,
-#         "NOT": ~,
-#         "RSHIFT": >>,
-#         "LSHIFT": <<
-#         }
-    
-#     return operators[word]
-
 
 def main():
     f = "inputs//day7.txt"
     data = parse_input(f)
-    # data = data[:4]
+    # data = data[:6]
     # print(data[:4])
 
     sample = ['123 -> x',
