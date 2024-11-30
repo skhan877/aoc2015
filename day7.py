@@ -22,11 +22,33 @@ def part_one(input):
         inp = instr[0].split(" ")
         inp = [x.replace(x, str(signals[x])) if x in signals.keys() else x for x in inp]
         
+        if len(inp) == 2 and inp[0] == "NOT":
+            # print(~int(inp[1]))
+            inp = ~int(inp[1])
+        
+        if len(inp) == 3:
+            if inp[1] == "AND":
+                inp = int(inp[0]) & int(inp[2])
+            
+            elif inp[1] == "OR":
+                inp = int(inp[0]) | int(inp[2])
+            
+            elif inp[1] == "RSHIFT":
+                inp = int(inp[0]) >> int(inp[2])
+
+            elif inp[1] == "LSHIFT":
+                inp = int(inp[0]) << int(inp[2])
 
         # add mappings to signals dict
-        signals[outp] = inp[0] if len(inp) == 1 else inp
-        print({outp: inp[0] if len(inp) == 1 else inp})
+        if isinstance(inp, list):
+            if len(inp) == 1:
+                signals[outp] = inp[0]
+        else:
+            signals[outp] = inp 
+        # signals[outp] = inp[0] if len(inp) == 1 else inp
+        # print({outp: inp[0] if len(inp) == 1 else inp})
 
+        print(signals)
         print("")
 
     return signals
