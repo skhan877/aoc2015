@@ -13,7 +13,7 @@ def part_one(input):
     signals = {} 
 
     for instr in input: 
-        print(instr)
+        # print(instr)
         # separate input and output
         instr = instr.split(" -> ")
         outp = instr[1]
@@ -21,12 +21,13 @@ def part_one(input):
         # split inputs
         inp = instr[0].split(" ")
         inp = [x.replace(x, str(signals[x])) if x in signals.keys() else x for x in inp]
+        # print(inp)
         
         if len(inp) == 2 and inp[0] == "NOT":
             # print(~int(inp[1]))
             inp = ~int(inp[1])
         
-        if len(inp) == 3:
+        elif len(inp) == 3:
             if inp[1] == "AND":
                 inp = int(inp[0]) & int(inp[2])
             
@@ -48,15 +49,15 @@ def part_one(input):
         # signals[outp] = inp[0] if len(inp) == 1 else inp
         # print({outp: inp[0] if len(inp) == 1 else inp})
 
-        print(signals)
-        print("")
+        # print(signals)
+        # print("")
 
     return signals
 
 
 def part_two(input, size=1000):
 
-    pass 
+    pass
 
 
 
